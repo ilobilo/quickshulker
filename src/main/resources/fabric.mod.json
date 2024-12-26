@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "id": "quickshulker",
+  "version": "1.6.1-1.21.4",
+  "name": "Quick Shulker",
+  "description": "Quickly open Shulker boxes (Original Mod by kyrptonaught, updated to 1.21 by dan5park)",
+  "authors": [
+    "kyrptonaught",
+    "Hao_cen",
+    "Grayer0113",
+    "dan5park"
+  ],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/quick-shulker",
+    "sources": "https://github.com/kyrptonaught/quickshulker"
+  },
+  "license": "MIT",
+  "icon": "assets/quickshulker/icon.png",
+  "environment": "*",
+  "mixins": [
+    {
+      "config": "net.kyrptonaught.quickshulker.json",
+      "environment": "*"
+    },
+    {
+      "config": "net.kyrptonaught.shulkerutils.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "entrypoints": {
+    "main": [
+      "net.kyrptonaught.quickshulker.QuickShulkerMod"
+    ],
+    "quickshulker": [
+      "net.kyrptonaught.quickshulker.QuickShulkerMod"
+    ],
+    "client": [
+      "net.kyrptonaught.quickshulker.client.QuickShulkerModClient"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.12.5",
+    "fabric": "*",
+    "java": ">=21"
+  },
+  "accessWidener": "quickshulker.accesswidener"
+}
