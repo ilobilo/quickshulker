@@ -58,7 +58,7 @@ public record QuickBundlePacket(ItemStackWithPos itemStackWithPos) implements Cu
         PayloadTypeRegistry.playC2S().register(QuickBundlePacket.ID, QuickBundlePacket.CODEC);
         ServerPlayNetworking.registerGlobalReceiver(QuickBundlePacket.ID, (payload, context) -> {
             if (context.player().isCreative()) {
-                context.player().server.execute(() -> BundleHelper.bundleItemIntoStack(context.player(), context.player().getInventory().getStack(payload.itemStackWithPos.slotId), payload.itemStackWithPos.itemStack, null));
+                context.player().getServer().execute(() -> BundleHelper.bundleItemIntoStack(context.player(), context.player().getInventory().getStack(payload.itemStackWithPos.slotId), payload.itemStackWithPos.itemStack, null));
             }
         });
         UnBundlePacket.registerReceivePacket();
@@ -101,7 +101,7 @@ public record QuickBundlePacket(ItemStackWithPos itemStackWithPos) implements Cu
             PayloadTypeRegistry.playC2S().register(BundleIntoHeld.ID, BundleIntoHeld.CODEC);
             ServerPlayNetworking.registerGlobalReceiver(BundleIntoHeld.ID, (payload, context) -> {
                 if (context.player().isCreative()) {
-                    context.player().server.execute(() -> BundleHelper.bundleItemIntoStack(context.player(), payload.stackList.get(0), payload.stackList.get(1), null));
+                    context.player().getServer().execute(() -> BundleHelper.bundleItemIntoStack(context.player(), payload.stackList.get(0), payload.stackList.get(1), null));
                 }
             });
         }
@@ -154,7 +154,7 @@ public record QuickBundlePacket(ItemStackWithPos itemStackWithPos) implements Cu
                 if (context.player().isCreative()) {
                     int playerInvSlotID = payload.itemStackWithPos.slotId;
                     ItemStack unBundleStack = payload.itemStackWithPos.itemStack;
-                    context.player().server.execute(() -> {
+                    context.player().getServer().execute(() -> {
                         ItemStack output = BundleHelper.unbundleItem(context.player(), unBundleStack);
                         if (output != null)
                             context.player().getInventory().setStack(playerInvSlotID, output);
